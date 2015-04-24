@@ -98,6 +98,7 @@ public class APIConnector {
 		//webRequest.header("Accept-Encoding", "gzip,deflate");
 		//webRequest.header("Accept-Language", "en-CA,en-US;q=0.8");
 		//webRequest.header("X-Requested-With", "com.teamclock.android");
-		return webRequest;
+		//return webRequest;
+		return null;
 	}
 }

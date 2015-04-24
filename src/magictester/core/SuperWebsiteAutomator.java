@@ -173,7 +173,7 @@ public abstract class SuperWebsiteAutomator implements iTestManager {
 
 	public APIV3Response CallAPI(Page_API page_API, String methodName, APIV3Request requ) {
 		String urlRest=requ.GetRETSUrl(page_API.GetUrl(), methodName, requ);
-		SeleniumDriver().get(urlRest);
+		//SeleniumDriver().get(urlRest); TODO
 		String returnedHTML=SeleniumDriver().getPageSource();
 		APIV3Response ret  = new APIV3Response();
 		ret.LoadHTML(returnedHTML);
