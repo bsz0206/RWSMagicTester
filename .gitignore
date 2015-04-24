@@ -1,0 +1,6 @@
+/bin/
+/TestParameters.ini
+/target/
+/Testing/
+/phantomjsdriver.log
+/TestData.ini
