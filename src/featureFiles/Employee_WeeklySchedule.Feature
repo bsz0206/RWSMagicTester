@@ -16,7 +16,7 @@ Background:
 And In the test session "API" I am testing application "RWS API v3"
 And I am using "API" API test profile
 
-@RunmeBSZ @StepsTransaction
+@Runme @StepsTransaction
 Scenario: API Create a shift
 When I login [by APIv3]
 And I get all employees [by APIv3]
