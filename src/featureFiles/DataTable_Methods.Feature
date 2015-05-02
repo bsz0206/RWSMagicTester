@@ -9,20 +9,25 @@ And I enter the following informaton in table with header method List<YourType>
 	|First Name|Last name|
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
+	|John      |Doe      |
 And I enter the following informaton in table with header method DataTable
 	|First Name|Last name|
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
+	|John      |Doe      |
 And I enter the following informaton in table with header method Map<K,V>
 	|BMW      |33525  |
 	|Fiat     |1356   |
+	|Samand   |2356   |
 And I enter the following informaton in table with header method List<Map<K,V>>
 	|First Name|Last name|
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
+	|John      |Doe      |
 And I enter the following informaton in table without header method List<List<E>>
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
+	|John      |Doe      |
 And I enter the following information in one column vertical table format
 	|Jake|
 	|Kate|
