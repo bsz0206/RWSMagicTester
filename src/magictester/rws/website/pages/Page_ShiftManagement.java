@@ -1,10 +1,14 @@
 package magictester.rws.website.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import magictester.core.PageField;
 import magictester.core.SuperWebPageAutomator;
 import magictester.core.SuperWebsiteAutomator;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class Page_ShiftManagement extends SuperWebPageAutomator {
@@ -71,5 +75,35 @@ public class Page_ShiftManagement extends SuperWebPageAutomator {
 	public void pressCreateCategoryOKButton() {
 		//SeleniumDriver.findElement(By.xpath("//span[text()= \"Create a Category Name\"]/../..//button[@type=\"button\" and text()=\"OK\"]")).click();
 		SeleniumDriver.findElement(GetFieldByCode("btCreateCategoryOK").By).click();
+	}
+
+	public List<String> getAllCategories() {
+		List<String> ret = new ArrayList<String>();
+		
+		List<WebElement> summaryNodes = SeleniumDriver.findElements(By.xpath("//summary[@category_name]"));
+		for(WebElement sum : summaryNodes){
+			ret.add(sum.getAttribute("category_name"));
+		}
+		
+		return ret;
+	}
+
+	public void clickOnCategory(String cat) {
+		SeleniumAssistant.ClickFailSafe(By.xpath("//summary[@category_name='" +cat +"']"));
+	}
+
+	public List<String> getCatItems(String cat) {
+		List<String> ret = new ArrayList<String>();
+		
+		String xp="";
+		xp=xp+"//summary[@category_name='";
+		xp=xp+cat;
+		xp=xp+"']/../table/tbody/tr";
+		List<WebElement> tableRows = SeleniumDriver.findElements(By.xpath(xp));
+		for(WebElement row : tableRows){
+			ret.add(row.findElement(By.xpath("./td[1]")) .getText());
+		}
+
+		return ret;
 	}
 }

@@ -27,12 +27,12 @@ And I select Shift Management from left side bar
 And I click on Add a new Shift button
 #NOT VERY GOOD:  And I create a Category named "Test"         ## see the two lines below 
 And I select to Create New Category from the Category dropdown
-And I enter "Test" as new Cateogry name
+And I enter "Night" as new Cateogry name
 And I press OK to create a new Cateogry 
-And I select "Test" from the Category dropdown
-And I enter "6:00" into Shift Start textbox 
-And I enter "14:00" into Shift End textbox 
+And I select "Night" from the Category dropdown
+And I enter "22:00" into Shift Start textbox 
+And I enter "06:00" into Shift End textbox 
 And I click on Create Shift button
-#Then I have a catorry name "Test"
-#And in category "Test" I have a shift "6:00" to "14:00" with "8" hours total
+Then I have a category named "Night"
+And in category "Night" I have a shift "22:00" to "06:00" with "8" hours total
 

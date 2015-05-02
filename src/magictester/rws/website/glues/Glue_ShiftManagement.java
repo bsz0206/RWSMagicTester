@@ -1,11 +1,17 @@
 package magictester.rws.website.glues;
 
+import java.util.List;
+
+import org.junit.Assert;
+
 import magictester.core.SuperGlue;
 import magictester.core.iTestManager;
 import magictester.rws.website.TestManager_RWSWebSite;
 import magictester.rws.website.pages.Page_CoreSettingsLeftBar;
 import magictester.rws.website.pages.Page_ShiftManagement;
 import magictester.rws.website.pages.Page_TopMainFrame;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class Glue_ShiftManagement  extends SuperGlue {
@@ -85,5 +91,16 @@ public class Glue_ShiftManagement  extends SuperGlue {
 		(new Page_ShiftManagement(CurrentTestManager())).enterShiftEnd(shiftEnd);
 		(new Page_ShiftManagement(CurrentTestManager())).clickCreateShift();
 	}   
+	@Then("^I have a category named \"(.*?)\"$")
+	public void i_have_a_category_name(String cat) throws Throwable {
+		List<String> existingCats = (new Page_ShiftManagement(CurrentTestManager())).getAllCategories();
+		Assert.assertTrue(existingCats.contains(cat));
+		
+	}
 
+	@Then("^in category \"(.*?)\" I have a shift \"(.*?)\" to \"(.*?)\" with \"(.*?)\" hours total$")
+	public void in_category_I_have_a_shift_to_with_hours_total(String cat, String shiftStart, String shiftEnd, String duration) throws Throwable {
+		(new Page_ShiftManagement(CurrentTestManager())).clickOnCategory(cat);
+		List<String> catItems = (new Page_ShiftManagement(CurrentTestManager())).getCatItems(cat);
+	}
 }
