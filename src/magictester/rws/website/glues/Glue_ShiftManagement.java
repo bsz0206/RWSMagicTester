@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.Assert;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import magictester.core.SuperGlue;
 import magictester.core.iTestManager;
 import magictester.rws.website.TestManager_RWSWebSite;
@@ -102,5 +103,6 @@ public class Glue_ShiftManagement  extends SuperGlue {
 	public void in_category_I_have_a_shift_to_with_hours_total(String cat, String shiftStart, String shiftEnd, String duration) throws Throwable {
 		(new Page_ShiftManagement(CurrentTestManager())).clickOnCategory(cat);
 		List<String> catItems = (new Page_ShiftManagement(CurrentTestManager())).getCatItems(cat);
+		throw new NotImplementedException();
 	}
 }
