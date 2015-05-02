@@ -45,6 +45,16 @@ public class Glue_DataTable_Methods  extends SuperGlue {
 		}
 	}
 
+
+	@When("^I enter the following information inline ((?:\\s|\\w|,)+) comma separated values$")
+	public void i_enter_the_following_information_inline_comma_separated_values(List<String> peopleNamesList) throws Throwable {
+		System.out.println("\r\n*****************");
+		for(String name : peopleNamesList) {
+			System.out.println(name);		
+		}
+	}
+
+
 	@When("^I enter the following information in one row end of step line comma separated values: ((?:\\s|\\w|,)+)$")
 	public void i_enter_the_following_information_in_one_row_end_of_step_line_comma_separated_values(List<String> peopleNamesList) throws Throwable {
 		System.out.println("\r\n*****************");
@@ -77,7 +87,7 @@ public class Glue_DataTable_Methods  extends SuperGlue {
 	public void i_enter_the_following_informaton_in_table_with_header_method_Map_K_V(Map<String, Integer> mapList) throws Throwable {
 		System.out.println("\r\n*****************");
 		for (Entry<String, Integer> entry : mapList.entrySet()) {
-			System.out.println("Car name=" + entry.getKey() + ", Price=" + entry.getValue());		
+			System.out.println("First name=" + entry.getKey() + ", Age=" + entry.getValue() + " years");		
 		}
 	}
 

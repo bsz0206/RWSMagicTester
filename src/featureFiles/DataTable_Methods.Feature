@@ -5,6 +5,7 @@ Scenario: Data table method 1
 When In the test session "API" I am testing application "RWS API v3"
 And I am using "API" API test profile
 And I enter the following information in one row end of step line comma separated values: Jake, Kate, John 
+And I enter the following information inline Jake, Kate, John comma separated values 
 And I enter the following informaton in table with header method List<YourType>
 	|First Name|Last name|
 	|Jake      |Jamaica  |
@@ -16,9 +17,9 @@ And I enter the following informaton in table with header method DataTable
 	|Kate      |Mansour  |
 	|John      |Doe      |
 And I enter the following informaton in table with header method Map<K,V>
-	|BMW      |33525  |
-	|Fiat     |1356   |
-	|Samand   |2356   |
+	|Jake     |33  |
+	|Kate     |23  |
+	|John     |56  |
 And I enter the following informaton in table with header method List<Map<K,V>>
 	|First Name|Last name|
 	|Jake      |Jamaica  |
