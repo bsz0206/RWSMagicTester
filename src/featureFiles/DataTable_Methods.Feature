@@ -1,6 +1,6 @@
 Feature: Testing different methods to load a data table
 
-@RunmeBSZ
+@Runme
 Scenario: Data table method 1
 When In the test session "API" I am testing application "RWS API v3"
 And I am using "API" API test profile
