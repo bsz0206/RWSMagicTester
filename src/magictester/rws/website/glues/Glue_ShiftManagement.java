@@ -3,6 +3,7 @@ package magictester.rws.website.glues;
 import java.util.List;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import magictester.core.SuperGlue;
@@ -10,12 +11,15 @@ import magictester.core.iTestManager;
 import magictester.rws.website.TestManager_RWSWebSite;
 import magictester.rws.website.pages.Page_CoreSettingsLeftBar;
 import magictester.rws.website.pages.Page_ShiftManagement;
+import magictester.rws.website.pages.Page_ShiftManagement.Shift;
 import magictester.rws.website.pages.Page_TopMainFrame;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class Glue_ShiftManagement  extends SuperGlue {
+	
+
 	@Override
 	protected iTestManager InitializeTestManager() {
 		return new TestManager_RWSWebSite();
@@ -102,7 +106,18 @@ public class Glue_ShiftManagement  extends SuperGlue {
 	@Then("^in category \"(.*?)\" I have a shift \"(.*?)\" to \"(.*?)\" with \"(.*?)\" hours total$")
 	public void in_category_I_have_a_shift_to_with_hours_total(String cat, String shiftStart, String shiftEnd, String duration) throws Throwable {
 		(new Page_ShiftManagement(CurrentTestManager())).clickOnCategory(cat);
-		List<String> catItems = (new Page_ShiftManagement(CurrentTestManager())).getCatItems(cat);
-		throw new NotImplementedException();
+		List<Shift> catItems = (new Page_ShiftManagement(CurrentTestManager())).getCatItems(cat);
+		boolean found = false;
+		for(Shift item : catItems){
+			if (
+					shiftStart.equals(item.start) &&
+					shiftEnd.equals(item.end) &&
+					duration.equals(item.duration)
+					){
+				found=true;
+				break;
+			}
+		}
+		Assert.assertTrue("Shift Not Found", found);
 	}
 }

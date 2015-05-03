@@ -92,8 +92,15 @@ public class Page_ShiftManagement extends SuperWebPageAutomator {
 		SeleniumAssistant.ClickFailSafe(By.xpath("//summary[@category_name='" +cat +"']"));
 	}
 
-	public List<String> getCatItems(String cat) {
-		List<String> ret = new ArrayList<String>();
+	public class Shift {
+		public String start;
+		public String end;
+		public String duration;
+		public String category;
+	}
+	
+	public List<Shift> getCatItems(String cat) {
+		List<Shift> ret = new ArrayList<Shift>();
 		
 		String xp="";
 		xp=xp+"//summary[@category_name='";
@@ -101,7 +108,12 @@ public class Page_ShiftManagement extends SuperWebPageAutomator {
 		xp=xp+"']/../table/tbody/tr";
 		List<WebElement> tableRows = SeleniumDriver.findElements(By.xpath(xp));
 		for(WebElement row : tableRows){
-			ret.add(row.findElement(By.xpath("./td[1]")) .getText());
+			Shift sh = new Shift();
+			sh.start= row.findElement(By.xpath("./td[1]")).getText();
+			sh.end= row.findElement(By.xpath("./td[2]")).getText();
+			sh.duration= row.findElement(By.xpath("./td[3]")).getText();
+			sh.category= cat;
+			ret.add(sh);
 		}
 
 		return ret;
