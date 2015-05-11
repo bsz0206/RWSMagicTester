@@ -1,6 +1,7 @@
 package magictester.rws.website.glues;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import magictester.rws.website.pages.Page_CoreSettingsLeftBar;
 import magictester.rws.website.pages.Page_ShiftManagement;
 import magictester.rws.website.pages.Page_ShiftManagement.Shift;
 import magictester.rws.website.pages.Page_TopMainFrame;
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,9 +34,7 @@ public class Glue_ShiftManagement  extends SuperGlue {
 
 	@When("^I go to Settings > Shift Management$")
 	public void i_go_to_ShiftManagement() throws Throwable {
-		(new Page_TopMainFrame(CurrentTestManager())).OpenAccountHolderMenu();
-		(new Page_TopMainFrame(CurrentTestManager())).SelectSettings();
-		(new Page_CoreSettingsLeftBar(CurrentTestManager())).SelectShiftManagement();
+		go_to_shift_management();
 	}
 
 	@When("^I go to enter the Shift Management page URL$")
@@ -71,6 +71,7 @@ public class Glue_ShiftManagement  extends SuperGlue {
 	    i_select_fron_Category_dropdown("Create New Category");
 	}
 
+	
 	@When("^I enter \"(.*?)\" into Shift Start textbox$")
 	public void i_enter_into_Shift_Start_textbox(String shiftStart) throws Throwable {
 		(new Page_ShiftManagement(CurrentTestManager())).enterShiftStart(shiftStart);
@@ -88,9 +89,7 @@ public class Glue_ShiftManagement  extends SuperGlue {
 	
 	@When("^I create a shift from \"(.*?)\" to \"(.*?)\"$")
 	public void i_create_a_shift_from_to(String shiftStart, String shiftEnd) throws Throwable {
-		(new Page_TopMainFrame(CurrentTestManager())).OpenAccountHolderMenu();
-		(new Page_TopMainFrame(CurrentTestManager())).SelectSettings();
-		(new Page_CoreSettingsLeftBar(CurrentTestManager())).SelectShiftManagement();
+		go_to_shift_management();
 		(new Page_ShiftManagement(CurrentTestManager())).clickAddNewShift();
 		(new Page_ShiftManagement(CurrentTestManager())).enterShiftStart(shiftStart);
 		(new Page_ShiftManagement(CurrentTestManager())).enterShiftEnd(shiftEnd);
@@ -104,7 +103,7 @@ public class Glue_ShiftManagement  extends SuperGlue {
 	}
 
 	@Then("^in category \"(.*?)\" I have a shift \"(.*?)\" to \"(.*?)\" with \"(.*?)\" hours total$")
-	public void in_category_I_have_a_shift_to_with_hours_total(String cat, String shiftStart, String shiftEnd, String duration) throws Throwable {
+	public void in_category_I_have_a_shift_from_to_with_hours_total(String cat, String shiftStart, String shiftEnd, String duration) throws Throwable {
 		(new Page_ShiftManagement(CurrentTestManager())).clickOnCategory(cat);
 		List<Shift> catItems = (new Page_ShiftManagement(CurrentTestManager())).getCatItems(cat);
 		boolean found = false;
@@ -120,4 +119,71 @@ public class Glue_ShiftManagement  extends SuperGlue {
 		}
 		Assert.assertTrue("Shift Not Found", found);
 	}
+	
+	// Throwable or Exception, because OpenAccountHolderMenu may cause an exception (error)
+	void go_to_shift_management () throws Exception{
+		(new Page_TopMainFrame(CurrentTestManager())).OpenAccountHolderMenu();
+		(new Page_TopMainFrame(CurrentTestManager())).SelectSettings();
+		(new Page_CoreSettingsLeftBar(CurrentTestManager())).SelectShiftManagement();
+	}
+	
+	@When("^I create a shift which starts at \"(.*?)\" and ends at \"(.*?)\" in category \"(.*?)\"$")
+		public void i_create_a_shift_which_starts_at_and_ends_at_in_category(String shiftStart, String shiftEnd, String category) throws Throwable {
+			go_to_shift_management();
+			Page_ShiftManagement page_ShiftManagement=new Page_ShiftManagement(CurrentTestManager());
+			
+			page_ShiftManagement.clickAddNewShift();
+			i_select_fron_Category_dropdown("Create New Category");
+			page_ShiftManagement.enterNewCategoryName(category);
+			page_ShiftManagement.pressCreateCategoryOKButton();
+			page_ShiftManagement.selectCategory(category);
+			page_ShiftManagement.enterShiftStart(shiftStart);
+			page_ShiftManagement.enterShiftEnd(shiftEnd);
+			page_ShiftManagement.clickCreateShift();
+	}
+
+	
+	
+	@Then("^in category \"(.*?)\" I have a shift from \"(.*?)\" to \"(.*?)\" with \"(.*?)\" minutes total$")
+	public void in_category_I_have_a_shift_from_to_with_minutes_total(String cat, String shiftStart, String shiftEnd, String durationMin) throws Throwable {
+		
+		go_to_shift_management();
+		// Converting string to Double (decimal number)
+		double duratioHour = Double.parseDouble(durationMin)/60;
+				
+		// Converting double to string
+		String durationHourString = String.valueOf(duratioHour);
+		
+		// I called the existing function
+		i_have_a_category_name(cat);
+		
+		// I called the existing function
+		in_category_I_have_a_shift_from_to_with_hours_total(cat, shiftStart, shiftEnd, durationHourString);
+	
+	}
+	
+	@When("^I create the following shifts:$")
+	public void i_create_the_following_shifts(DataTable dataTable) throws Throwable {
+		for (Map<String, String> map : dataTable.asMaps(String.class, String.class)) {
+	        String cateogryName = map.get("Cateogry Name");
+	        String start  = map.get("Start");
+	        String end  = map.get("End");
+	        //as the variable has been defined in for so out of that doen't have meaning
+	        i_create_a_shift_which_starts_at_and_ends_at_in_category(start, end, cateogryName);
+		}
+		
+	}
+
+	@Then("^the following shifts exists:$")
+	public void the_following_shifts_exists(DataTable dataTable) throws Throwable {
+		for (Map<String, String> map : dataTable.asMaps(String.class, String.class)) {
+	        String cateogryName = map.get("Cateogry Name");
+	        String start  = map.get("Start");
+	        String end  = map.get("End");
+	        String durationInMinutes  = map.get("Duration in minutes");
+	        
+	        in_category_I_have_a_shift_from_to_with_minutes_total(cateogryName, start, end, durationInMinutes);
+		}
+	}
 }
+	

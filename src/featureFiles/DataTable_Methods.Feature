@@ -16,7 +16,7 @@ And I enter the following informaton in table with header method DataTable
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
 	|John      |Doe      |
-And I enter the following informaton in table with header method Map<K,V>
+And I enter the following informaton in table without header method Map<K,V>
 	|Jake     |33  |
 	|Kate     |23  |
 	|John     |56  |
