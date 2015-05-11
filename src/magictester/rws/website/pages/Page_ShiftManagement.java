@@ -72,6 +72,7 @@ public class Page_ShiftManagement extends SuperWebPageAutomator {
 		SeleniumAssistant.SetText(GetFieldByCode("NewCategoryNameTextbox").By, category);
 	}
 
+	
 	public void pressCreateCategoryOKButton() {
 		//SeleniumDriver.findElement(By.xpath("//span[text()= \"Create a Category Name\"]/../..//button[@type=\"button\" and text()=\"OK\"]")).click();
 		SeleniumDriver.findElement(GetFieldByCode("btCreateCategoryOK").By).click();
