@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.en.When;
 import magictester.core.SuperGlue;
 import magictester.core.iTestManager;
 import magictester.rws.website.TestManager_RWSWebSite;
+import cucumber.api.DataTable;
+import cucumber.api.java.en.When;
 
 public class Glue_DataTable_Methods  extends SuperGlue {
 	@Override

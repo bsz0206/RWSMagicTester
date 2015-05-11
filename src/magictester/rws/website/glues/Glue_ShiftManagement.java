@@ -3,10 +3,6 @@ package magictester.rws.website.glues;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
-import org.openqa.selenium.WebElement;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import magictester.core.SuperGlue;
 import magictester.core.iTestManager;
 import magictester.rws.website.TestManager_RWSWebSite;
@@ -14,8 +10,10 @@ import magictester.rws.website.pages.Page_CoreSettingsLeftBar;
 import magictester.rws.website.pages.Page_ShiftManagement;
 import magictester.rws.website.pages.Page_ShiftManagement.Shift;
 import magictester.rws.website.pages.Page_TopMainFrame;
+
+import org.junit.Assert;
+
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
