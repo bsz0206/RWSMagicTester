@@ -18,14 +18,17 @@ When I create a shift from "6:10" to "14:10"
 @Runme @StepsTransaction
 Scenario: Create a shift
 When I switch to the default test session
+<<<<<<< HEAD
 
 
 #
+=======
+And I login
+>>>>>>> branch 'master' of https://github.com/bsz0206/RWSMagicTester.git
 And I open the account holder menu 
 And I select Settings
 And I select Shift Management from left side bar
 And I click on Add a new Shift button
-#NOT VERY GOOD:  And I create a Category named "Test"         ## see the two lines below 
 And I select to Create New Category from the Category dropdown
 And I enter "Night" as new Cateogry name
 And I press OK to create a new Cateogry 
