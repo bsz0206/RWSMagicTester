@@ -6,26 +6,26 @@ When In the test session "API" I am testing application "RWS API v3"
 And I am using "API" API test profile
 And I enter the following information in one row end of step line comma separated values: Jake, Kate, John 
 And I enter the following information inline Jake, Kate, John comma separated values 
-And I enter the following informaton in table with header method List<YourType>
+And I enter the following information in table with header method List<YourType>
 	|First Name|Last name|
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
 	|John      |Doe      |
-And I enter the following informaton in table with header method DataTable
+And I enter the following information in table with header method DataTable
 	|First Name|Last name|
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
 	|John      |Doe      |
-And I enter the following informaton in table with header method Map<K,V>
+And I enter the following information in table with header method Map<K,V>
 	|Jake     |33  |
 	|Kate     |23  |
 	|John     |56  |
-And I enter the following informaton in table with header method List<Map<K,V>>
+And I enter the following information in table with header method List<Map<K,V>>
 	|First Name|Last name|
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
 	|John      |Doe      |
-And I enter the following informaton in table without header method List<List<E>>
+And I enter the following information in table without header method List<List<E>>
 	|Jake      |Jamaica  |
 	|Kate      |Mansour  |
 	|John      |Doe      |
